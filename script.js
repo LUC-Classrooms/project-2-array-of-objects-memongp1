@@ -1,6 +1,6 @@
 /*
  Project 2 - Array of Objects
- Name: 
+ Name: patrick memong
  Comments: 
  */
 
@@ -11,16 +11,75 @@
 ***/
 
 // Global Variables go here
+let ufos = []; // Array to hold UFO objects
 
 function setup(){
-  // this function will run once
-  createCanvas(600, 400); // create a 600 x 400 pixel drawing canvas
+  // This function runs once
+  createCanvas(600, 400); // Create a 600 x 400 pixel drawing canvas
+  
+  // Part A - Individual Object Instances (Constructor Testing)
+  // Create two individual UFO objects
+  let obj1 = new UFO(100, 200); // this is locally scoped to setup() and not visible in draw()
+  let obj2 = new UFO(300, 100);
 
-
+  // Part B - Array of Objects Initialization
+  // Initialize the array with 10 UFO objects
+  for(let i = 0; i < 10; i++) {
+    ufos.push(new UFO(random(width), random(height)));
+  }
 }
 
 function draw(){
-  background(200); //light gray background
+  background(200); // Light gray background
   
+  // Part A - Individual Object Instances (Constructor Testing)
+  // Move and display obj1
+ // disable these lines to make the sketch work
+  //obj1.move();
+  //obj1.display();
+
+  // Move and display obj2
+  //obj2.move();
+  //obj2.display();
+
+  // Part B - Array of Objects Movement and Display
+  // Move and display each UFO in the array
+  for(let i = 0; i < ufos.length; i++) {
+    ufos[i].move();
+    ufos[i].display();
+  }
 }
 
+// UFO Constructor function
+function UFO(tempX, tempY){ 
+  // Properties
+  this.x = tempX;
+  this.y = tempY;
+  this.d = 50; // Diameter
+  this.speedX = random(-1, 1); // Speed in x direction
+  this.speedY = random(-1, 1); // Speed in y direction
+
+  // Methods
+  this.move = function() {
+    // Move the UFO
+    this.x += this.speedX;
+    this.y += this.speedY;
+    
+    // Boundary conditions - bounce off the canvas edges
+    if (this.x > width || this.x < 0){
+      this.speedX *= -1;
+    }
+    if (this.y > height || this.y < 0){
+      this.speedY *= -1;
+    }
+  }
+  
+  this.display = function() {
+    // Display the UFO
+    push();
+    translate(this.x, this.y);
+    fill(255, 0, 0); // Red color
+    ellipse(0, 0, this.d, this.d); // Draw a circle at the center of the UFO
+    pop();
+  }
+}
