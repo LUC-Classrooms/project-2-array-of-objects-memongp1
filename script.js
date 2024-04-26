@@ -19,7 +19,7 @@ function setup(){
   
   // Part A - Individual Object Instances (Constructor Testing)
   // Create two individual UFO objects
-  let obj1 = new UFO(100, 200);
+  let obj1 = new UFO(100, 200); // this is locally scoped to setup() and not visible in draw()
   let obj2 = new UFO(300, 100);
 
   // Part B - Array of Objects Initialization
@@ -34,12 +34,13 @@ function draw(){
   
   // Part A - Individual Object Instances (Constructor Testing)
   // Move and display obj1
-  obj1.move();
-  obj1.display();
+ // disable these lines to make the sketch work
+  //obj1.move();
+  //obj1.display();
 
   // Move and display obj2
-  obj2.move();
-  obj2.display();
+  //obj2.move();
+  //obj2.display();
 
   // Part B - Array of Objects Movement and Display
   // Move and display each UFO in the array
